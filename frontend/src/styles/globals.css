@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+
+  /* User theme */
+  --bg: #0a0e14;
+  --surface: rgba(15, 22, 32, 0.8);
+  --surface-hover: rgba(22, 30, 44, 0.9);
+  --accent: #6c5ce7;
+  --accent-light: #a29bfe;
+  --accent-warm: #fd9644;
+  --accent-warm-light: #feca57;
+  --text: #e8ecf1;
+  --text-muted: #6b7a8d;
+  --text-faint: #3d4b5c;
+  --border: rgba(255,255,255,0.07);
+  --border-hover: rgba(255,255,255,0.14);
+  --glass: rgba(15, 22, 32, 0.65);
+
+  /* Admin theme */
+  --admin-bg: #0c0f15;
+  --admin-surface: rgba(18, 24, 36, 0.85);
+  --admin-accent: #4ade80;
+  --admin-accent-2: #818cf8;
+  --admin-danger: #f87171;
+  --admin-warn: #fbbf24;
+  --admin-text: #e2e8f0;
+  --admin-muted: #64748b;
+  --admin-border: rgba(255,255,255,0.06);
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.18); }
+  * { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.1) transparent; }
+}
+
+/* ─── Shared Utilities ─── */
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border);
+}
+
+.glass-strong {
+  background: var(--surface);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent-light), var(--accent-warm));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-btn {
+  background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+}
+.gradient-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(108, 92, 231, 0.45);
+}
+
+/* ─── Animations ─── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(108, 92, 231, 0.5); }
+  70% { box-shadow: 0 0 0 8px rgba(108, 92, 231, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(108, 92, 231, 0); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes eq-bar {
+  0%, 100% { height: 4px; }
+  50% { height: 16px; }
+}
+
+.animate-fade-in { animation: fadeIn 0.3s ease-out; }
+.animate-slide-up { animation: slideUp 0.4s ease-out; }
+.animate-pulse-ring { animation: pulse-ring 1.5s infinite; }
+.animate-spin-slow { animation: spin-slow 8s linear infinite; }
+
+/* Equalizer bars for playing indicator */
+.eq-bar { 
+  display: inline-block; 
+  width: 3px; 
+  background: var(--accent); 
+  border-radius: 2px;
+  animation: eq-bar 0.8s ease-in-out infinite;
+}
+.eq-bar:nth-child(1) { animation-delay: 0s; }
+.eq-bar:nth-child(2) { animation-delay: 0.15s; height: 12px; }
+.eq-bar:nth-child(3) { animation-delay: 0.3s; }
+.eq-bar:nth-child(4) { animation-delay: 0.45s; height: 10px; }
+
+/* ─── Admin-specific ─── */
+.admin-surface {
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  backdrop-filter: blur(16px);
+}
+
+/* ─── Responsive helpers ─── */
+@media (max-width: 768px) {
+  .hide-mobile { display: none !important; }
+}
+@media (min-width: 769px) {
+  .hide-desktop { display: none !important; }
+}

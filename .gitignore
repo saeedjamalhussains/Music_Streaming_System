@@ -1,0 +1,26 @@
+# Music Streaming System Gitignore
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.local
+
+# Backend
+backend/target/
+backend/bin/
+backend/.metadata/
+backend/uploads/
+backend/*.log
+backend/mvnw
+backend/mvnw.cmd
+
+# General
+.vscode/
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+.env
+.env.example
+extracted_commands.md
